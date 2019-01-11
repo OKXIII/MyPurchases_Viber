@@ -32,8 +32,8 @@ viber = Api(BotConfiguration(
 def incoming():
 	logger.debug("received request. post data: {0}".format(request.get_data()))
 	print ('URA!')
-	render_template('index.html')
-	viber_request = viber.parse_request(request.get_data())
+
+#	viber_request = viber.parse_request(request.get_data())
 
 #	if isinstance(viber_request, ViberMessageRequest):
 #		message = viber_request.get_message()
@@ -50,6 +50,7 @@ def incoming():
 #		logger.warn("client failed receiving message. failure: {0}".format(viber_request))
 #
 #	return Response(status=200)
+	return render_template('index.html')
 
 def set_webhook(viber):
 	viber.set_webhook('https://oktestbot.herokuapp.com:8443/')
