@@ -27,7 +27,8 @@ viber = Api(BotConfiguration(
   auth_token='47a71cffbce7d0eb-bb788620e6861ddf-7df845e6e386c7f4'
 ))
 
-@app.route('/', methods=['POST'])
+#@app.route('/', methods=['POST'])
+@app.route('/')
 def incoming():
 	logger.debug("received request. post data: {0}".format(request.get_data()))
 
