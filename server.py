@@ -31,6 +31,7 @@ viber = Api(BotConfiguration(
 @app.route('/')
 def incoming():
 	logger.debug("received request. post data: {0}".format(request.get_data()))
+	print ('URA!')
 
 #	viber_request = viber.parse_request(request.get_data())
 
