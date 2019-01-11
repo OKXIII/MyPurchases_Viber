@@ -1,4 +1,4 @@
-from flask import Flask, request, Response
+from flask import Flask, request, Response, render_template
 from viberbot import Api
 from viberbot.api.bot_configuration import BotConfiguration
 from viberbot.api.messages.text_message import TextMessage
@@ -32,8 +32,8 @@ viber = Api(BotConfiguration(
 def incoming():
 	logger.debug("received request. post data: {0}".format(request.get_data()))
 	print ('URA!')
-
-#	viber_request = viber.parse_request(request.get_data())
+	render_template('index.html')
+	viber_request = viber.parse_request(request.get_data())
 
 #	if isinstance(viber_request, ViberMessageRequest):
 #		message = viber_request.get_message()
@@ -49,7 +49,7 @@ def incoming():
 #	elif isinstance(viber_request, ViberFailedRequest):
 #		logger.warn("client failed receiving message. failure: {0}".format(viber_request))
 #
-	return Response(status=200)
+#	return Response(status=200)
 
 def set_webhook(viber):
 	viber.set_webhook('https://oktestbot.herokuapp.com:8443/')
