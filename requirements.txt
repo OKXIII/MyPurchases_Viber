@@ -1,1 +1,4 @@
 viberbot==1.0.11
+pyTelegramBotAPI
+psycopg2>=2.6.1
+flask=
