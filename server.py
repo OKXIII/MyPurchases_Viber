@@ -23,7 +23,7 @@ logger.addHandler(handler)
 app = Flask(__name__)
 viber = Api(BotConfiguration(
   name='MyPurchases',
-  avatar='http://viber.com/avatar.jpg',
+  avatar='https://github.com/OKXIII/MyPurchasesBot/blob/master/MyPurchasesBot.jpg?raw=true',
   auth_token='47a71cffbce7d0eb-bb788620e6861ddf-7df845e6e386c7f4'
 ))
 
@@ -50,7 +50,7 @@ def incoming():
 	return Response(status=200)
 
 def set_webhook(viber):
-	viber.set_webhook('https://mypurchases.website:8443/')
+	viber.set_webhook('https://mypurchasessite.herokuapp.com:8443/')
 
 if __name__ == "__main__":
 	scheduler = sched.scheduler(time.time, time.sleep)
@@ -59,4 +59,4 @@ if __name__ == "__main__":
 	t.start()
 
 	context = ('server.crt', 'server.key')
-	app.run(host='0.0.0.0', port=8443, debug=True, ssl_context=context)
+	app.run(host='0.0.0.0', port=443, debug=True, ssl_context=context)
