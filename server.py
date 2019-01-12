@@ -33,24 +33,32 @@ def incoming():
 	logger.debug("received request. post data: {0}".format(request.get_data()))
 	print ('URA!')
 
+	if not viber.verify_signature(request.get_data(), request.headers.get('X-Viber-Content-Signature')):
+		return Response(status=403)
+	print ('URA1')
+
+	# this library supplies a simple way to receive a request object
 	viber_request = viber.parse_request(request.get_data())
+	print ('URA2')
 
 	if isinstance(viber_request, ViberMessageRequest):
-		message = viber_request.get_message()
-		viber.send_messages(viber_request.get_sender().get_id(), [
-			TextMessage(text='Hello my Friend!')
+		message = viber_request.message
+		# lets echo back
+		viber.send_messages(viber_request.sender.id, [
+			message
 		])
-	elif isinstance(viber_request, ViberConversationStartedRequest) \
-			or isinstance(viber_request, ViberSubscribedRequest) \
-			or isinstance(viber_request, ViberUnsubscribedRequest):
-		viber.send_messages(viber_request.get_user().get_id(), [
-			TextMessage(None, None, viber_request.get_event_type())
+		print('URA3')
+
+	elif isinstance(viber_request, ViberSubscribedRequest):
+		viber.send_messages(viber_request.get_user.id, [
+			TextMessage(text="thanks for subscribing!")
 		])
 	elif isinstance(viber_request, ViberFailedRequest):
 		logger.warn("client failed receiving message. failure: {0}".format(viber_request))
+	print ('URA4')
 
-#	return Response(status=200)
-	return render_template('index.html')
+	return Response(status=200)
+#	return render_template('index.html')
 
 def set_webhook(viber):
 	viber.set_webhook('https://oktestbot.herokuapp.com:443/')
