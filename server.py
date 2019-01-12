@@ -27,6 +27,7 @@ viber = Api(BotConfiguration(
   auth_token='490fdf7a8567d79f-55497f0c7abb8e34-c86174030e8599c0'
 ))
 
+
 #@app.route('/', methods=['POST'])
 @app.route('/', methods=['POST'])
 def incoming():
@@ -71,6 +72,6 @@ if __name__ == "__main__":
 #	scheduler.enter(5, 1, set_webhook, (viber,))
 #	t = threading.Thread(target=scheduler.run)
 #	t.start()
-
+	set_webhook(viber)
 	context = ('server.crt', 'server.key')
 	app.run(host='0.0.0.0', port=443, debug=True, ssl_context=context)
