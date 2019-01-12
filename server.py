@@ -62,6 +62,7 @@ def incoming():
 #	return render_template('index.html')
 
 def set_webhook(viber):
+	print ('Set_webhook')
 	viber.set_webhook('https://oktestbot.herokuapp.com:443/')
 #	viber.set_webhook('https://oktestbot.herokuapp.com:8443/')
 
@@ -73,5 +74,6 @@ if __name__ == "__main__":
 #	t = threading.Thread(target=scheduler.run)
 #	t.start()
 	set_webhook(viber)
+	print ('WEBHOOK')
 	context = ('server.crt', 'server.key')
 	app.run(host='0.0.0.0', port=443, debug=True, ssl_context=context)
