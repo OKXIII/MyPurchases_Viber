@@ -53,7 +53,10 @@ def incoming():
 	return render_template('index.html')
 
 def set_webhook(viber):
-	viber.set_webhook('https://oktestbot.herokuapp.com:8443/')
+	viber.set_webhook('https://oktestbot.herokuapp.com:443/')
+#	viber.set_webhook('https://oktestbot.herokuapp.com:8443/')
+
+
 
 if __name__ == "__main__":
 	scheduler = sched.scheduler(time.time, time.sleep)
