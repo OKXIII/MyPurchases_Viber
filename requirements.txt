@@ -25,7 +25,7 @@ pyTelegramBotAPI==3.5.2
 redis==3.0.1
 requests==2.18.4
 six==1.11.0
-tensorflow==1.4.0
+tensorflow==2.5.3
 tensorflow-tensorboard==0.4.0
 urllib3==1.22
 viberbot==1.0.11
